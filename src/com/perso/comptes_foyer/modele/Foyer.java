@@ -50,6 +50,7 @@ public class Foyer {
         setTotalAchete(0);
         setRabMois(0);
         for (int cpt = 0; cpt < getListPersonne().size(); cpt++){
+            getListPersonne().get(cpt).setDoitTotal(getListPersonne().get(cpt).getDoitRepas()-getListPersonne().get(cpt).getDuCourses());
             setTotalMange(getTotalMange() + getListPersonne().get(cpt).getDoitRepas());
             setTotalAchete(getTotalAchete() + getListPersonne().get(cpt).getDuCourses());
         }

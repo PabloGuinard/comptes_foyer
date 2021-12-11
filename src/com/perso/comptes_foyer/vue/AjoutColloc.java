@@ -1,5 +1,8 @@
 package com.perso.comptes_foyer.vue;
 
+import com.perso.comptes_foyer.modele.Foyer;
+import com.perso.comptes_foyer.modele.Personne;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +12,8 @@ public class AjoutColloc extends Fenetre implements ActionListener {
     private final JTextField txtNouveauColloc = new JTextField();
     private final JButton btAnnuler = new JButton(), btValiderNouveau = new JButton();
 
-    public AjoutColloc() {
+    public AjoutColloc(Foyer foyer) {
+        super(foyer);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initialisation();
         btAnnuler.addActionListener(this);
@@ -29,7 +33,7 @@ public class AjoutColloc extends Fenetre implements ActionListener {
     }
 
     public void composantCreation(){
-        setTextField(txtNouveauColloc, true, dimMainMenu, "");
+        setTextField(txtNouveauColloc, true, dimMainMenu);
         txtNouveauColloc.setPreferredSize(new Dimension(400, 70));
         setBouton(btAnnuler, "ANNULER");
         setBouton(btValiderNouveau, "VALIDER");
@@ -69,10 +73,11 @@ public class AjoutColloc extends Fenetre implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btValiderNouveau){
-            /*listeTxtColloc.add(new JTextField());
-            setTextField(listeTxtColloc.get(listeTxtColloc.size()-1), false, dimMainMenu, txtNouveauColloc.getText());*/
-            listeBoutonsSupprColloc.add(new JButton());
-            setBouton(listeBoutonsSupprColloc.get(listeBoutonsSupprColloc.size()-1), "X");
+            foyer.getListPersonne().add(new Personne(txtNouveauColloc.getText()));
+            //setBouton(listeBoutonsSupprColloc.get(listeBoutonsSupprColloc.size()-1), "X");
+            for(int cpt = 0; cpt < foyer.getListPersonne().size(); cpt ++){
+                System.out.println(foyer.getListPersonne().get(cpt).getNom());
+            }
         }
         this.setVisible(false);
     }

@@ -14,14 +14,16 @@ public class Fenetre extends JFrame{
     protected Font font = new Font("Arial", Font.PLAIN, 30);
     protected final Dimension dimMainMenu = new Dimension(400,50);
     protected final Dimension dimComptesColloc = new Dimension(600,50);
+    protected final Dimension dimRecap = new Dimension(400,50);
     protected final JLabel lbTitre = new JLabel();
 
-    protected ArrayList<JButton> listeBoutonsSupprColloc = new ArrayList<>();
+    protected Foyer foyer;
 
     protected final JPanel pano = new JPanel();
     protected final GridBagConstraints cont = new GridBagConstraints();
 
-    public Fenetre() {
+    public Fenetre(Foyer foyer) {
+        this.foyer = foyer;
     }
 
     public void setLabel(JLabel label, String texte){
@@ -37,13 +39,21 @@ public class Fenetre extends JFrame{
         bouton.setForeground(couleurBlanc);
     }
 
-    public void setTextField(JTextField textArea, boolean isEditable, Dimension dimension, String texte){
+    public void setTextField(JTextField textArea, boolean isEditable, Dimension dimension){
         textArea.setFont(font);
         textArea.setEditable(isEditable);
-        textArea.setText(texte);
         textArea.setForeground(couleurGris);
         textArea.setMargin(insetsInterieur);
+        textArea.setMinimumSize(dimension);
         textArea.setPreferredSize(dimension);
+        textArea.setBackground(couleurBlanc);
+    }
+
+    public void setTextArea(JTextArea textArea){
+        textArea.setFont(font);
+        textArea.setEditable(false);
+        textArea.setForeground(couleurGris);
+        textArea.setMargin(insetsInterieur);
         textArea.setBackground(couleurBlanc);
     }
 
@@ -51,8 +61,10 @@ public class Fenetre extends JFrame{
         box.setFont(font);
         box.setForeground(couleurGris);
         box.setPreferredSize(dimension);
+        box.removeAllItems();
         for (int cpt = 0; cpt < foyer.getListPersonne().size(); cpt++){
             box.addItem(foyer.getListPersonne().get(cpt).getNom());
         }
+        box.setSelectedIndex(0);
     }
 }

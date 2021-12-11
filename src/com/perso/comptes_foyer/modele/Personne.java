@@ -3,8 +3,8 @@ package com.perso.comptes_foyer.modele;
 public class Personne {
     private String nom;
     private int doitRepas;
-    private double duCourses;
-    private double doitTotal;
+    private int duCourses;
+    private int doitTotal;
 
     public Personne(String nom) {
         this.nom = nom;
@@ -22,20 +22,20 @@ public class Personne {
     public void setDoitRepas(int doitRepas) {
         this.doitRepas = doitRepas;
     }
-    public double getDuCourses() {
+    public int getDuCourses() {
         return duCourses;
     }
-    public void setDuCourses(double duCourses) {
+    public void setDuCourses(int duCourses) {
         this.duCourses = duCourses;
     }
-    public double getDoitTotal() {
+    public int getDoitTotal() {
         return doitTotal;
     }
-    public void setDoitTotal(double doitTotal) {
+    public void setDoitTotal(int doitTotal) {
         this.doitTotal = doitTotal;
     }
 
-    public void faireComptesPersonne(int nbRepas, double courses){
+    public void faireComptesPersonne(int nbRepas, int courses){
         int tmp = nbRepas * 3;
         setDoitRepas(tmp);
         setDuCourses(courses);
